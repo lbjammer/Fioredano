@@ -176,6 +176,22 @@ Two gaps worth closing, both about credibility rather than code:
    the NJ HIC number is a strong trust signal. Add it to the footer once you have
    it.
 
+## Mobile
+
+The phone layout is the primary one, not a shrunk desktop:
+
+- The hero puts the headline, sub-copy and both CTAs above the fold — the photo
+  sits below them, so a visitor never scrolls past an image to find the offer.
+- The gallery and the reviews each become a snap-scrolling swipe rail. Stacked
+  vertically they cost about seven screens; as rails they cost one each.
+- A fixed bottom bar keeps **Call now** and **Free estimate** reachable from
+  anywhere on the page.
+- Every control clears a 44px tap target, and the 34-town index stays in two
+  columns down to 330px.
+
+Full page height at 390px is roughly 9,100px — down from 14,400px before these
+changes.
+
 ## Accessibility
 
 Semantic landmarks, a skip link, labelled form fields with inline validation,

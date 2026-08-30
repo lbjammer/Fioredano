@@ -253,11 +253,11 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 
 .lede { font-size: clamp(1.06rem, 1.6vw, 1.2rem); color: var(--text-2); }
 
-.section { padding: clamp(64px, 9vw, 116px) 0; }
+.section { padding: clamp(48px, 9vw, 116px) 0; }
 .section + .section { border-top: 1px solid var(--rule-soft); }
 .section--alt { background: var(--bg-alt); }
 
-.section__head { margin-bottom: clamp(36px, 5vw, 60px); max-width: 62ch; }
+.section__head { margin-bottom: clamp(26px, 5vw, 60px); max-width: 62ch; }
 .section__head p { margin-top: 18px; }
 
 /* --------------------------------------------------------------------------
@@ -364,7 +364,8 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
   background: none;
   border: 1px solid var(--rule);
   border-radius: var(--radius);
-  padding: 9px 12px;
+  padding: 0 15px;
+  min-height: 44px;      /* full tap target */
   color: var(--text);
   font: 500 .9rem/1 var(--font-body);
   cursor: pointer;
@@ -392,13 +393,19 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 /* --------------------------------------------------------------------------
    6. Hero
    -------------------------------------------------------------------------- */
-.hero { padding: clamp(46px, 7vw, 88px) 0 clamp(56px, 7vw, 92px); }
+.hero { padding: clamp(30px, 7vw, 88px) 0 clamp(44px, 7vw, 92px); }
+/* Copy, media and trust are siblings so the phone can reorder them into
+   headline -> CTA -> photo -> proof. Desktop places them explicitly. */
 .hero__grid {
   display: grid;
   grid-template-columns: 1.06fr .94fr;
-  gap: clamp(36px, 5vw, 72px);
+  column-gap: clamp(36px, 5vw, 72px);
+  row-gap: 30px;
   align-items: center;
 }
+.hero__copy  { grid-column: 1; grid-row: 1; }
+.hero__media { grid-column: 2; grid-row: 1 / span 2; }
+.hero .trust { grid-column: 1; grid-row: 2; }
 .hero h1 { margin-bottom: 24px; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero .lede { max-width: 46ch; }
@@ -476,15 +483,22 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 }
 
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; }
-  .hero__media { order: -1; max-width: 460px; }
+  /* Single column, source order: headline and the estimate button come before
+     the photo, so a phone gets the offer without scrolling past an image. */
+  .hero__grid { grid-template-columns: 1fr; row-gap: 26px; }
+  .hero__copy,
+  .hero__media,
+  .hero .trust { grid-column: 1; grid-row: auto; }
+  .hero__media { max-width: 520px; }
   .hero__media img { aspect-ratio: 5 / 4; }
   .hero__stamp { left: auto; right: 14px; bottom: 14px; }
   .trust { max-width: none; }
+  .hero__actions { margin: 26px 0 0; }
+  .hero__actions .btn { flex: 1 1 auto; }
 }
 @media (max-width: 460px) {
-  .trust { grid-template-columns: 1fr; }
-  .hero__stamp { position: static; margin-top: 16px; max-width: none; }
+  .hero__stamp { position: static; margin-top: 14px; max-width: none; }
+  .hero__actions .btn { width: 100%; }
 }
 
 /* --------------------------------------------------------------------------
@@ -579,10 +593,6 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
   .shot--hero2 { grid-column: span 2; }
   .shot--wide { grid-column: span 2; }
 }
-@media (max-width: 520px) {
-  .gallery { grid-template-columns: 1fr; grid-auto-rows: 210px; }
-  .shot--tall, .shot--wide, .shot--hero2 { grid-column: auto; grid-row: auto; }
-}
 
 /* --------------------------------------------------------------------------
    10. Process — a real sequence, so it is really numbered
@@ -621,8 +631,11 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 .process__note p { font-size: .9rem; color: var(--text-2); margin: 0; }
 
 @media (max-width: 860px) {
-  .process__grid { grid-template-columns: 1fr; }
-  .process__media { order: -1; }
+  /* Steps lead on a phone; the site photo and the timeline note close the
+     section. A 4:5 image at full width costs a screen and a half, so it goes
+     landscape here. */
+  .process__grid { grid-template-columns: 1fr; gap: 26px; }
+  .process__media img { aspect-ratio: 3 / 2; max-height: 300px; }
 }
 
 /* --------------------------------------------------------------------------
@@ -659,6 +672,60 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 }
 
 /* --------------------------------------------------------------------------
+   11b. Phone carousels
+   Nine gallery tiles and nine review cards stacked vertically cost about seven
+   screens of scrolling. On a phone they become one swipeable rail each, which
+   is also how people expect to browse a contractor's work on a phone.
+   -------------------------------------------------------------------------- */
+.swipe {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0 0 12px;
+}
+
+@media (max-width: 720px) {
+  .swipe { display: block; }
+
+  .gallery,
+  .reviews {
+    display: flex;
+    grid-template-columns: none;
+    grid-auto-rows: auto;
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* Bleed to the screen edges so a half-visible next card signals "swipe". */
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 2px var(--gutter) 14px;
+    scrollbar-width: none;
+  }
+  .gallery::-webkit-scrollbar,
+  .reviews::-webkit-scrollbar { display: none; }
+  .gallery:focus-visible,
+  .reviews:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
+
+  .shot {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+    aspect-ratio: 4 / 3;
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .review {
+    flex: 0 0 84%;
+    scroll-snap-align: center;
+    grid-column: auto;
+  }
+  .review--feature { flex-basis: 90%; }
+}
+
+/* --------------------------------------------------------------------------
    12. Service area — 34 real towns, set as a dense mono index
    -------------------------------------------------------------------------- */
 .area__grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
@@ -678,8 +745,9 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
   break-inside: avoid;
 }
 .towns li.is-home { color: var(--accent); font-weight: 500; }
-@media (max-width: 860px) { .area__grid { grid-template-columns: 1fr; } .towns { columns: 2; } }
-@media (max-width: 440px) { .towns { columns: 1; } }
+@media (max-width: 860px) { .area__grid { grid-template-columns: 1fr; gap: 28px; } .towns { columns: 2; column-gap: 20px; } }
+@media (max-width: 720px) { .towns li { font-size: .74rem; padding: 5px 0; } }
+@media (max-width: 330px) { .towns { columns: 1; } }
 
 /* --------------------------------------------------------------------------
    13. Estimate form
@@ -724,6 +792,7 @@ h2 + p, h2 + .lede, h1 + p, h1 + .lede { margin-top: 20px; }
 .field textarea {
   font-family: var(--font-body);
   font-size: 1rem;
+  min-height: 44px;      /* comfortable touch target on a phone */
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--rule);

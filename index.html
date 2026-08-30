@@ -83,7 +83,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="wrap hero__grid">
-      <div>
+      <div class="hero__copy">
         <p class="eyebrow">Seaside Heights, NJ &middot; Est. 2021</p>
         <h1>Your bathroom, <em>done right</em> the first time.</h1>
         <p class="lede">
@@ -99,13 +99,6 @@
             (848) 448-2294
           </a>
         </div>
-
-        <div class="trust">
-          <div class="trust__item"><span class="trust__k">5.0</span><span class="trust__v">10 verified reviews</span></div>
-          <div class="trust__item"><span class="trust__k">Free</span><span class="trust__v">In-home estimate</span></div>
-          <div class="trust__item"><span class="trust__k">34</span><span class="trust__v">Shore towns served</span></div>
-          <div class="trust__item"><span class="trust__k">Family</span><span class="trust__v">Owned &amp; operated</span></div>
-        </div>
       </div>
 
       <div class="hero__media">
@@ -117,6 +110,13 @@
           <strong>We beat or match any written price.</strong>
           <span>Bring us a competitor's quote</span>
         </div>
+      </div>
+
+      <div class="trust">
+        <div class="trust__item"><span class="trust__k">5.0</span><span class="trust__v">10 verified reviews</span></div>
+        <div class="trust__item"><span class="trust__k">Free</span><span class="trust__v">In-home estimate</span></div>
+        <div class="trust__item"><span class="trust__k">34</span><span class="trust__v">Shore towns served</span></div>
+        <div class="trust__item"><span class="trust__k">Family</span><span class="trust__v">Owned &amp; operated</span></div>
       </div>
     </div>
   </section>
@@ -193,7 +193,8 @@
         <p>A sample of the finishes we build most often &mdash; tiled walk-in showers, double vanities and full master suites.</p>
       </div>
 
-      <div class="gallery">
+      <p class="swipe" aria-hidden="true">Swipe for more →</p>
+      <div class="gallery" tabindex="0" role="group" aria-label="Recent work, scrollable">
         <figure class="shot shot--hero2">
           <picture><source srcset="assets/img/bath-shower.webp" type="image/webp">
             <img src="assets/img/bath-shower.jpg" width="1000" height="750" loading="lazy" alt="Tiled walk-in shower with a built-in bench, two recessed niches and oil-rubbed bronze fixtures."></picture>
@@ -307,7 +308,8 @@
         <p>These are real, independently verified homeowner reviews collected through Networx.</p>
       </div>
 
-      <div class="reviews">
+      <p class="swipe" aria-hidden="true">Swipe for more →</p>
+      <div class="reviews" tabindex="0" role="group" aria-label="Customer reviews, scrollable">
         <figure class="review review--feature">
           <div class="stars" role="img" aria-label="5 out of 5 stars">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
