@@ -111,9 +111,10 @@ rebrand is a handful of hex values rather than a search-and-replace.
 | --- | --- | --- |
 | `--bg` | `#f6f3ee` | Warm chalk page ground |
 | `--text` | `#15191e` | Body copy |
-| `--accent` | `#8f6220` | Burnished brass — buttons, links, eyebrows |
+| `--accent` | `#8c601f` | Burnished brass — buttons, links, eyebrows |
 | `--accent-hi` | `#b8863b` | Brass for large type and graphics |
 | `--marine` | `#1b3a52` | Deep navy behind the estimate form |
+| `--marine-brass` | `#d9a85a` | Brass that stays legible on the marine band |
 
 Dark mode redefines the same tokens in two places — a `prefers-color-scheme`
 block and a `[data-theme="dark"]` block — so it works whether the visitor's OS is
