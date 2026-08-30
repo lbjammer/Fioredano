@@ -33,11 +33,15 @@ the single highest-value change you can make to this site.
 
 ## Typefaces
 
-| Family | Weights | Licence |
-| --- | --- | --- |
-| [Archivo](https://fonts.google.com/specimen/Archivo) | 600, 700, 800 | SIL Open Font License 1.1 |
-| [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) | 400, 500, 600 | SIL Open Font License 1.1 |
-| [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) | 400, 500 | SIL Open Font License 1.1 |
+| Family | Weights | Used for | Licence |
+| --- | --- | --- | --- |
+| [Archivo](https://fonts.google.com/specimen/Archivo) | 600, 700, 800 | Headlines | SIL Open Font License 1.1 |
+| [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) | 400, 500, 600 | Body copy | SIL Open Font License 1.1 |
+| [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) | 400, 500 | Labels and data | SIL Open Font License 1.1 |
+| [Montserrat](https://fonts.google.com/specimen/Montserrat) | 900 | The logotype | SIL Open Font License 1.1 |
 
-Both licences permit self-hosting, which is what `assets/fonts/` does (latin
-subsets only, ~239 KB total).
+All three licences permit self-hosting, which is what `assets/fonts/` does
+(latin subsets only, ~255 KB total).
+
+The logo itself is Fioredano Construction LLC's own artwork, redrawn as vector
+from the company shirt. It is not stock and is not covered by the licences above.

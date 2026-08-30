@@ -13,7 +13,7 @@
      ---------------------------------------------------------------------- */
   var CONFIG = {
     endpoint: '',                                   // e.g. 'https://formspree.io/f/xxxxxxxx'
-    fallbackEmail: 'fioredanoconstruction@gmail.com',
+    fallbackEmail: 'fioredanoconstructionllc@gmail.com',
     phoneDisplay: '(848) 448-2294',
     redirect: 'thank-you.html'
   };

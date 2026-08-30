@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Fioredano Construction">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 158" role="img" aria-label="Fioredano Construction">
   <title>Fioredano Construction</title>
-  <rect width="512" height="512" rx="72" fill="#14181c"/>
-  <g fill="#72aedd" transform="translate(40,161) scale(1.2)">
+  <g fill="currentColor">
     <path d="M141 6 L151 2 L166 2 L181 12 L189 11 L199 21 L197 29 L199 35 L205 41 L214 38 L219 42 L226 49 L223 56 L207 72 L201 73 L190 62 L192 55 L188 50 L182 48 L176 49 L70 155 L44 155 L43 153 L57 139 L164 32 C157 20 150 11 141 6 Z"/>
     <path d="M226 64 L229 64 L236 71 L319 154 L290 154 L215 79 L216 74 Z"/>
     <path d="M3 136 H45 V140 L30 155 H3 Z"/>

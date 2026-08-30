@@ -11,7 +11,7 @@ it can be dropped on any static host as-is.
 
 ## Before this goes live
 
-Three things need a real value. Everything else works out of the box.
+Two things need a real value. Everything else works out of the box.
 
 ### 1. Point the form somewhere
 
@@ -20,7 +20,7 @@ Three things need a real value. Everything else works out of the box.
 ```js
 var CONFIG = {
   endpoint: '',                                   // <- set this
-  fallbackEmail: 'fioredanoconstruction@gmail.com',
+  fallbackEmail: 'fioredanoconstructionllc@gmail.com',
   phoneDisplay: '(848) 448-2294',
   redirect: 'thank-you.html'
 };
@@ -41,8 +41,8 @@ Any service that accepts a JSON `POST` works. The quickest options:
 On success the visitor is sent to `thank-you.html`. Set `redirect: ''` to keep
 them on the form with an inline confirmation instead.
 
-**Confirm `fallbackEmail` is the address Andrew actually checks** — it is a
-placeholder guess, not a verified address.
+`fallbackEmail` is the address printed on the company shirt, so it is the real
+one rather than a guess.
 
 ### 2. Swap in real photos
 
@@ -74,17 +74,25 @@ attribute in `index.html` to describe the actual room.
 Phone photos work fine. Shoot with the lights on, stand in the doorway, and hold
 the phone level — a straight vertical line matters more than a good camera.
 
-### 3. Replace the logo
+### 3. Nothing — the logo is done
 
-The header mark is a placeholder: an inline SVG monogram plus the name set in
-Archivo. It is **not** Fioredano's real logo.
+The mark was redrawn as true vector from the company shirt: a 45-degree gable
+whose left rafter doubles as the hammer's handle, with the head at the peak and
+a quartered round window beneath. Every angle is exact rather than traced, so it
+stays crisp at any size. It matches the shirt art at 0.93 IoU, the remaining
+difference being JPEG blur on the photo, not shape error.
 
-- Header and footer: the `.logo` block in `index.html` and `thank-you.html`
-- Favicon and standalone asset: `assets/img/logo.svg`
+| File | Use |
+| --- | --- |
+| `assets/img/logo-mark.svg` | The mark alone. Fills with `currentColor`, so it takes the theme's brand colour. |
+| `assets/img/logo-lockup.svg` | Mark plus logotype, stacked as on the shirt. Logotype is outlined to paths — no font needed. Use for print, social and email signatures. |
+| `assets/img/logo.svg` | App icon and favicon: the mark reversed out of the brand's black rounded square. |
 
-Swapping in a real wordmark means replacing the `<svg class="logo__mark">` and,
-if the mark already contains the company name, deleting the `.logo__type` span
-next to it.
+The logotype is **Montserrat Black** — identified by measuring every letter on
+the shirt against twelve candidate faces, matching to 1.28px mean error at a 36px
+cap height. The shirt sets it at **-0.037em** tracking, which is what the header
+uses. The site loads Montserrat 900 (16 KB) for the logotype only; headlines stay
+in Archivo.
 
 ---
 
@@ -96,30 +104,39 @@ index.html            The whole site — hero, services, gallery, process,
 thank-you.html        Post-submission confirmation
 assets/css/site.css   All styles, tokenised, light + dark
 assets/js/site.js     Form validation, submission, mobile nav
-assets/fonts/         Self-hosted Archivo + IBM Plex (latin subsets)
-assets/img/           Photography and the logo mark
+assets/fonts/         Self-hosted Archivo + IBM Plex + Montserrat (latin subsets)
+assets/img/           Photography and the three logo assets
 build/inline.py       Bundles everything into one shareable HTML file
 PHOTO-CREDITS.md      Image provenance and licences
 ```
 
-### Design tokens
+### Brand and design tokens
 
-Everything visual comes from custom properties at the top of `site.css`, so a
-rebrand is a handful of hex values rather than a search-and-replace.
+The brand is **#72aedd on near-black**, taken straight off the company shirt.
 
-| Token | Light | Role |
-| --- | --- | --- |
-| `--bg` | `#f6f3ee` | Warm chalk page ground |
-| `--text` | `#15191e` | Body copy |
-| `--accent` | `#8c601f` | Burnished brass — buttons, links, eyebrows |
-| `--accent-hi` | `#b8863b` | Brass for large type and graphics |
-| `--marine` | `#1b3a52` | Deep navy behind the estimate form |
-| `--marine-brass` | `#d9a85a` | Brass that stays legible on the marine band |
+Light blue on a light page fails contrast badly (#72aedd on white is 2.4:1), so
+the palette follows normal practice and carries two logo colours: the true brand
+blue on dark grounds, and a deeper `#1a6597` on light ones. Both read as the same
+blue; only one is legible on paper-coloured backgrounds.
+
+| Token | Light | Dark | Role |
+| --- | --- | --- | --- |
+| `--brand` | `#72aedd` | `#72aedd` | The logo blue. Never changes. |
+| `--brand-mark` | `#1a6597` | `#72aedd` | Logo colour for the current ground |
+| `--accent` | `#1a6597` | `#72aedd` | Buttons, links, eyebrows |
+| `--accent-hi` | `#72aedd` | `#8fc0e6` | Large type and graphics only |
+| `--panel` | `#14181c` | `#11161a` | The shirt's black, behind the estimate form |
+| `--panel-brand` | `#72aedd` | `#72aedd` | Brand blue on that black — the shirt exactly |
+| `--bg` | `#f4f6f8` | `#0d1216` | Page ground |
+| `--text` | `#11171c` | `#e9eef3` | Body copy |
+
+Everything visual comes from these custom properties at the top of `site.css`, so
+a rebrand is a handful of hex values rather than a search-and-replace.
 
 Dark mode redefines the same tokens in two places — a `prefers-color-scheme`
 block and a `[data-theme="dark"]` block — so it works whether the visitor's OS is
-dark or a theme was set explicitly. `--marine` stays a *background* role in both
-themes; it deepens rather than inverting, so the brass accent keeps its contrast.
+dark or a theme was set explicitly. `--panel` stays a *background* role in both
+themes; it deepens rather than inverting, so the brand blue keeps its contrast.
 
 ---
 
